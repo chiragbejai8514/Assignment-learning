@@ -1,0 +1,40 @@
+.container-header{
+    z-index: 2;
+    position: fixed;
+    height: 70px;
+    width: 1236px;
+    padding-left: 130px;
+    background-image: linear-gradient(-135deg, #3B244A 0%,#2E3166 100%);
+    box-shadow: 0 2px 20px 0 rgba(0,0,0,0.30);
+  }
+
+  .header-text{
+    display: inline-block;
+    color: white;
+    margin-top: 20px;
+    font-size: 20px;
+    font-family: JosefinSans-Regular;
+  
+  }
+  .header-icons{
+    display: inline-block;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    width: 42px;
+    height: 27px;
+    filter: opacity(0.5);
+  
+  }
+
+  .header-icon {
+    display: inline-block;
+    float: right;
+    margin-top: 20px;
+    margin-right: 20px;
+  }
+
+
+  .header-icons:hover{
+    filter: none
+  }

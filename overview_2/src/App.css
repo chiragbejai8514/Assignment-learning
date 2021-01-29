@@ -1,0 +1,58 @@
+.main-container{
+
+     height: 100vh; 
+     font-family: JosefinSans-SemiBold  
+  }
+
+  .main-containers{
+
+    height: 400px; 
+    width: 500;
+    background: red
+ }
+ 
+.content-main{
+
+  padding-top: 70px
+}
+
+
+body {
+  background-image: linear-gradient(45deg, #281D3A 0%, #272C52 100%);
+  color: white;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.sidenav {
+  height: 100%;
+  width: 88px;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-image: linear-gradient(-135deg, #2E3166 0%, #3B244A 100%);
+  overflow-x: hidden;
+}
+
+.sidenav a {
+  padding: 6px 8px 6px 16px;
+  text-decoration: none;
+  font-size: 25px;
+  color: #818181;
+  display: block;
+}
+
+.sidenav a:hover {
+  color: #f1f1f1;
+}
+
+.main {
+  margin-left: 88px;
+  font-size: 28px;
+  /* padding: 0px 10px;*/
+}
+
+@media screen and (max-height: 450px) {
+  .sidenav a {font-size: 18px;}
+}
