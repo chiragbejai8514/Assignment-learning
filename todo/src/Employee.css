@@ -1,0 +1,10 @@
+.employee-details{
+    display:flex;
+    justify-content: space-between;
+    border:solid 1px green;
+    margin-top: 13px
+}
+
+.searchBar{
+    display: flex
+}

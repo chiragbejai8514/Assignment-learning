@@ -1,0 +1,862 @@
+          <form>
+            <input type="text" name="name" value={this.state.name} placeholder="First Name" onChange={this.handleChange.bind(this)} />
+            <br />
+            <input type="text" name="description" value={this.state.description} placeholder="Last Name" onChange={this.handleChange.bind(this)} />
+            <h1>{this.state.name} {this.state.description}</h1>
+            <input type="submit" onClick={this.addItem.bind(this)} />
+            <input type="reset" />
+
+          </form>
+
+
+                    <form id="form">
+            <input placeholder="Enter new TODO here" type="text" name="name" value={this.state.name} onChange={this.handleChange.bind(this)} />
+            <input placeholder="Enter description" type="text" name="description" value={this.state.description} onChange={this.handleChange.bind(this)} />
+            <select>
+              <option value="">-- Please Choose tag --</option>
+              <option value="bug">bug</option>
+              <option value="test">test</option>
+              <option value="normal">normal</option>
+              <option value="error">error</option>
+            </select>
+            <button onClick={this.addItem.bind(this)} >Submit</button>
+            <input type="reset" />
+            <h1>{this.state.name} {this.state.description}</h1>
+
+          </form>
+
+
+            addItem(event) {
+    var dict = {}
+    dict['name'] = document.getElementById("form").elements[0].value
+    dict['description'] = document.getElementById("form").elements[1].value
+    dict['tag'] = document.getElementById("form").elements[2].value
+    this.setState({
+      todos: this.state.todos.concat(dict)
+    })
+  }
+
+
+
+import React from 'react';
+import './App.css';
+
+import data from './data.json'
+
+class todo extends React.Component {
+
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      flag: 0,
+      index: '',
+      todos: data.todo,
+      name: '',
+      description: '',
+      tag: '',
+      color: {
+        bug: 'red',
+        test: 'green',
+        error: 'grey',
+        normal: 'black'
+      }
+    }
+  }
+
+  removeItem(index) {
+    this.setState({
+      todos: this.state.todos.filter((x, i) => i != index)
+    })
+  };
+
+  editItem(index) {
+    this.state.flag = 1;
+    this.state.index = index;
+
+    this.setState({
+      name: this.state.todos[index].name,
+      description: this.state.todos[index].description,
+      tag: this.state.todos[index].tag,
+    })
+  };
+
+  handleChange(event) {
+    this.setState({
+      [event.target.name]: event.target.value
+    })
+  }
+
+  handleSubmit = (event) => {
+    event.preventDefault()
+    var dict = {}
+    dict['id'] = this.state.index + 1
+    dict['name'] = this.state.name
+    dict['description'] = this.state.description
+    // dict['description'] = event.target.elements.description.value
+
+    // dict['tag'] = event.target.elements.tag.value
+    dict['tag'] = this.state.tag
+
+    if (event.target.elements[3].name == 'submit') {
+      this.setState({
+        todos: this.state.todos.concat(dict)
+      })
+    }
+    else {
+      this.setState(prevState => {
+        prevState.todos[this.state.index] = dict;
+        console.log(prevState)
+        return {
+          prevState
+        }
+      })
+    }
+    this.state.name = ''
+    this.state.description = ''
+    this.state.tag = ''
+
+  }
+
+  handleUpdate = () => {
+    // console.log('ya')
+  }
+
+  render() {
+    const listItems = this.state.todos.map((x, index, arr) => {
+      return (
+        <div className="todo__list-item row" style={{ border: `solid 2px ${this.state.color[x.tag]}` }}>
+          <div className="todo__item-name">Name:{x.name}</div>
+          <div className="todo__item-desc"> Description:{x.description}</div>
+          <button className="todo__item-remove" onClick={this.removeItem.bind(this, index)}>Remove</button>
+          <button className="todo__item-remove" onClick={this.editItem.bind(this, index)}>Edit</button>
+
+        </div>
+      )
+    })
+
+    return (
+      <div className="todo">
+        <div className="container">
+          <div className="heading column">TODO</div>
+
+          <form onSubmit={this.handleSubmit} id="form">
+            <input placeholder="Enter new TODO here" type="text" name="name" value={this.state.name} onChange={this.handleChange.bind(this)} />
+            <input placeholder="Enter description" type="text" name="description" value={this.state.description} onChange={this.handleChange.bind(this)} />
+            <select name="tag" value={this.state.tag} onChange={this.handleChange.bind(this)}>
+              <option value="">-- Please Choose tag --</option>
+              <option value="bug">bug</option>
+              <option value="test">test</option>
+              <option value="normal">normal</option>
+              <option value="error">error</option>
+            </select>
+
+            {(this.state.flag == 0) ? <button type="submit" name="submit">submit</button> : <button name="update">Update</button>}
+
+
+            <input type="reset" />
+          </form>
+          <div className="todo__list-body">
+            {listItems}
+          </div>
+        </div>
+      </div>
+    )
+  }
+}
+
+export default todo;
+
+
+
+    const red = {
+        color: '#ff6050',
+        label: 'Not Helpfull'
+    }
+
+    const green = {
+        color: '#1ec87c',
+        label: 'Helpfull'
+    }
+
+//////////////////
+
+import React from 'react';
+import './App.css';
+
+import data from './data.json'
+
+import Form from './Form'
+
+import OutlierActionButton from './OutlierActionButton'
+
+const color = {
+  bug: 'red',
+  test: 'green',
+  error: 'grey',
+  normal: 'black'
+}
+
+class todo extends React.Component {
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      flag: 0,
+      index: '',
+      todos: data.todo,
+      form: {
+        name: '',
+        description: '',
+        tag: '',
+      }
+    }
+  }
+
+  removeItem = (index) => {
+    this.setState({
+      todos: this.state.todos.filter((x, i) => i !== index)
+    })
+    this.clearForm();
+  };
+
+  editItem = (index) => {
+    this.setState({
+      flag: 1,
+      index,
+      form: {
+        name: this.state.todos[index].name,
+        description: this.state.todos[index].description,
+        tag: this.state.todos[index].tag,
+      }
+      // form: this.state.todos[index]
+    })
+  };
+
+  handleChange = (event) => {
+    const { form } = this.state
+    const current = form
+    const { name, value } = event.target
+    current[name] = value
+    this.setState({
+      form: current
+    })
+  }
+
+  handleSubmit = (event) => {
+    event.preventDefault()
+    var dict = {}
+    dict['id'] = this.state.index + 1;
+
+    dict = this.state.form;
+
+    (this.state.flag === 0) ?
+      this.setState({
+        todos: this.state.todos.concat(dict)
+      })
+
+      :
+      this.setState(prevState => {
+        prevState.todos[this.state.index] = dict;
+        return {
+          prevState
+        }
+      })
+
+    this.clearForm();
+
+  }
+
+  clearForm = () => {
+    return (
+      this.setState({
+        flag: 0,
+        form: {
+          name: '',
+          description: '',
+          tag: ''
+        }
+      })
+    )
+  }
+
+  render = () => {
+    const { todos } = this.state
+    const listItems = todos.map((x, index, arr) => {
+      return (
+        <div key={x.id} className="todo__list-item row" style={{ border: `solid 2px ${color[x.tag]}` }}>
+          <div className="todo__item-name">Name:{x.name}</div>
+          <div className="todo__item-desc"> Description:{x.description}</div>
+          <div>
+            <button className="todo__item-remove" onClick={this.removeItem.bind(this, index)}>Remove</button>
+            <button className="todo__item-remove" onClick={this.editItem.bind(this, index)}>Edit</button>
+          </div>
+        </div>
+      )
+    })
+
+    return (
+      <div className="todo">
+        <div className="container">
+          <div className="heading column">TODO</div>
+          <Form state={this.state} handleChange={this.handleChange} handleSubmit={this.handleSubmit} handleClear={this.clearForm} />
+          <div className="todo__list-body">
+            {listItems}
+          </div>
+
+          <OutlierActionButton color="#ff6050" label="Not Helpfull" />
+
+        </div>
+      </div>
+    )
+  }
+}
+
+export default todo;
+
+//
+
+import React from 'react'
+
+const Form = (props) => {
+    const { name, description, tag } = props.state.form
+    const { handleSubmit, handleChange, handleClear } = props
+    return (
+        <form onSubmit={handleSubmit}>
+            <input placeholder="Enter new TODO here" type="text" name="name" value={name} onChange={handleChange} />
+            <input placeholder="Enter description" type="text" name="description" value={description} onChange={handleChange} />
+            <select name="tag" value={tag} onChange={handleChange}>
+                <option value="">-- Please Choose tag --</option>
+                <option value="bug">bug</option>
+                <option value="test">test</option>
+                <option value="normal">normal</option>
+                <option value="error">error</option>
+            </select>
+
+            {(props.state.flag === 0) ? <button type="submit" name="submit">Submit</button> : <button type="submit" name="update">Update</button>}
+
+            <button type="reset" onClick={handleClear} >Reset</button>
+        </form>
+    )
+}
+
+export default Form
+
+//////////
+import React from 'react'
+
+class Form extends React.Component {
+
+    constructor(props) {
+        super(props);
+        const {name,description,tag}=props.form;
+
+        this.state = {
+            name,
+            description,
+            tag,
+
+            // const { name, description, tag } = props.state.form
+            //         const { flag } = props.state.flag
+            //         const { form } = props.state.form
+        }
+
+    }
+
+
+    handleSubmit = (event) => {
+        console.log(this.name)
+
+        event.preventDefault()
+        var dict = {}
+        dict['id'] = this.state.index + 1;
+
+        dict = this.state.form;
+
+        (this.state.flag === 0) ?
+            this.setState({
+                todos: this.state.todos.concat(dict)
+            })
+
+            :
+            this.setState(prevState => {
+                prevState.todos[this.state.index] = dict;
+                return {
+                    prevState
+                }
+            })
+
+        this.clearForm();
+
+    }
+
+    handleChange = (event) => {
+        // const { form } = this.state
+        console.log()
+        const current = this.form
+        const { name, value } = event.target
+        current[name] = value
+        this.setState({
+            form: current
+        })
+    }
+
+    clearForm = () => {
+        return (
+            this.setState({
+                flag: 0,
+                form: {
+                    name: '',
+                    description: '',
+                    tag: ''
+                }
+            })
+        )
+    }
+
+    render() {
+        return (
+            <form onSubmit={this.handleSubmit} >
+                <input placeholder="Enter new TODO here" type="text" name="name" value={this.name} onChange={this.handleChange} />
+                <input placeholder="Enter description" type="text" name="description" value={this.description} onChange={this.handleChange} />
+                <select name="tag" value={this.tag} onChange={this.handleChange}>
+                    <option value="">-- Please Choose tag --</option>
+                    <option value="bug">bug</option>
+                    <option value="test">test</option>
+                    <option value="normal">normal</option>
+                    <option value="error">error</option>
+                </select>
+
+                {(this.flag === 0) ? <button type="submit" name="submit">Submit</button> : <button type="submit" name="update">Update</button>}
+
+                <button type="reset" onClick={this.handleClear} >Reset</button>
+            </form >
+        )
+    }
+}
+
+export default Form
+
+
+///////
+import React from 'react'
+
+class Form extends React.Component {
+
+    
+
+
+    render() {
+        const { name, description, tag } = this.props.state.form;
+        const { handleSubmit, handleChange, handleClear } = this.props
+        const { flag } = this.props.state
+        return (
+            <form onSubmit={handleSubmit}>
+                <input placeholder="Enter new TODO here" type="text" name="name" value={name} onChange={handleChange} />
+                <input placeholder="Enter description" type="text" name="description" value={description} onChange={handleChange} />
+                <select name="tag" value={tag} onChange={handleChange}>
+                    <option value="">-- Please Choose tag --</option>
+                    <option value="bug">bug</option>
+                    <option value="test">test</option>
+                    <option value="normal">normal</option>
+                    <option value="error">error</option>
+                </select>
+
+                {(flag === 0) ? <button type="submit" name="submit">Submit</button> : <button type="submit" name="update">Update</button>}
+
+                <button type="reset" onClick={handleClear} >Reset</button>
+            </form>
+        )
+    }
+}
+
+export default Form
+
+// import React from 'react'
+
+// const Form = (props) => {
+//     const { name, description, tag } = props.state.form
+//     const { handleSubmit, handleChange, handleClear } = props
+//     return (
+//         <form onSubmit={handleSubmit}>
+//             <input placeholder="Enter new TODO here" type="text" name="name" value={name} onChange={handleChange} />
+//             <input placeholder="Enter description" type="text" name="description" value={description} onChange={handleChange} />
+//             <select name="tag" value={tag} onChange={handleChange}>
+//                 <option value="">-- Please Choose tag --</option>
+//                 <option value="bug">bug</option>
+//                 <option value="test">test</option>
+//                 <option value="normal">normal</option>
+//                 <option value="error">error</option>
+//             </select>
+
+//             {(props.state.flag === 0) ? <button type="submit" name="submit">Submit</button> : <button type="submit" name="update">Update</button>}
+
+//             <button type="reset" onClick={handleClear} >Reset</button>
+//         </form>
+//     )
+// }
+
+// export default Form
+
+import React from 'react';
+import './App.css';
+
+import data from './data.json'
+
+import Form from './Form'
+
+import OutlierActionButton from './OutlierActionButton'
+
+const color = {
+  bug: 'red',
+  test: 'green',
+  error: 'grey',
+  normal: 'black'
+}
+
+class todo extends React.Component {
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      flag: 0,
+      index: '',
+      todos: data.todo,
+      form: {
+        name: '',
+        description: '',
+        tag: '',
+      }
+    }
+  }
+
+  removeItem = (index) => {
+    this.setState({
+      todos: this.state.todos.filter((x, i) => i !== index)
+    })
+    this.clearForm();
+  };
+
+  editItem = (index) => {
+    this.setState({
+      flag: 1,
+      index,
+      form: {
+        name: this.state.todos[index].name,
+        description: this.state.todos[index].description,
+        tag: this.state.todos[index].tag,
+      }
+      // form: this.state.todos[index]
+    })
+  };
+
+  handleChange = (event) => {
+    const { form } = this.state
+    const current = form
+    const { name, value } = event.target
+    current[name] = value
+    this.setState({
+      form: current
+    })
+  }
+
+  handleSubmit = (event) => {
+    event.preventDefault()
+    var dict = {}
+    dict['id'] = this.state.index + 1;
+
+    dict = this.state.form;
+
+    (this.state.flag === 0) ?
+      this.setState({
+        todos: this.state.todos.concat(dict)
+      })
+
+      :
+      this.setState(prevState => {
+        prevState.todos[this.state.index] = dict;
+        return {
+          prevState
+        }
+      })
+
+    this.clearForm();
+
+  }
+
+  clearForm = () => {
+    return (
+      this.setState({
+        flag: 0,
+        form: {
+          name: '',
+          description: '',
+          tag: ''
+        }
+      })
+    )
+  }
+
+  render = () => {
+    const { todos } = this.state
+    const listItems = todos.map((item, index, arr) => {
+      return (
+        <div key={item.id} className="todo__list-item row" style={{ border: `solid 2px ${color[item.tag]}` }}>
+          <div className="todo__item-name">Name:{item.name}</div>
+          <div className="todo__item-desc"> Description:{item.description}</div>
+          <div>
+            <button className="todo__item-remove" onClick={()=>this.removeItem(index)}>Remove</button>
+            <button className="todo__item-remove" onClick={()=>this.editItem(index)}>Edit</button>
+          </div>
+        </div>
+      )
+    })
+
+    return (
+      <div className="todo">
+        <div className="container">
+          <div className="heading column">TODO</div>
+          <Form state={this.state} handleChange={this.handleChange} handleSubmit={this.handleSubmit} handleClear={this.clearForm} />
+          <div className="todo__list-body">
+            {listItems}
+          </div>
+
+          {/* <OutlierActionButton color="#ff6050" label="Not Helpfull" /> */}
+
+        </div>
+      </div>
+    )
+  }
+}
+
+export default todo;
+///////////
+
+
+import React from 'react'
+
+class Form extends React.Component {
+
+  constructor(props) {
+
+    super(props);
+    this.state = {
+      inputArea: {
+        name: '',
+        description: '',
+        tag: '',
+      }
+    }
+  }
+
+  componentDidUpdate(prevProps) {
+    if (prevProps.temps !== this.props.temps) {
+      this.setState({ inputArea: this.props.temps })
+    }
+  }
+
+  handleChange = (event) => {
+    const { inputArea } = this.state
+    const inputValue = inputArea
+    const { name, value } = event.target
+    inputValue[name] = value
+    this.setState({
+      inputArea: inputValue
+    })
+  }
+
+  render() {
+    const { name, description, tag } = this.state.inputArea;
+    const { handleSubmit } = this.props
+
+    return (
+      <form onSubmit={(e) => {
+        e.preventDefault();
+        handleSubmit(this.state.inputArea)
+      }}>
+        <input placeholder="Enter new TODO here" type="text" name="name" value={name} onChange={this.handleChange} />
+        <input placeholder="Enter description" type="text" name="description" value={description} onChange={this.handleChange} />
+        <select name="tag" value={tag} onChange={this.handleChange}>
+          <option value="">-- Please Choose tag --</option>
+          <option value="bug">bug</option>
+          <option value="test">test</option>
+          <option value="normal">normal</option>
+          <option value="error">error</option>
+        </select>
+
+        {(this.props.temps.name) ? <button type="submit" name="update">Update</button> : <button type="submit" name="submit">Submit</button>}
+
+        <button type="reset" onClick={this.clearForm} >Reset</button>
+      </form>
+    )
+  }
+}
+
+export default Form
+
+//////////
+
+import React, { Component } from 'react'
+
+import EmployeeList from './EmployeeList'
+
+
+import EmployeeForm from './EmployeeForm'
+
+import SearchBar from './SearchBar'
+
+
+import './Employee.css'
+const url = 'http://dummy.restapiexample.com/api/v1/'
+
+const initialEdit = {
+    id: '',
+    employee_name: '',
+    employee_salary: '',
+    employee_age: '',
+
+}
+
+class Employee extends Component {
+    constructor(props) {
+        super(props)
+        this.state = {
+            searchArrray: [],
+            editEmployee: initialEdit,
+            isLoaded: false,
+        }
+    }
+
+    componentDidMount() {
+        fetch(url + 'employees')
+            .then(response => response.json())
+            .then(json => this.setState({
+                employees: json.data,
+                isLoaded: true,
+            }))
+            .catch(err => console.log(err))
+    }
+
+
+
+    removeEmployee = (item) => {
+        fetch(url + 'delete/' + item.id, {
+            method: 'DELETE',
+            headers: new Headers(),
+        }).then((res) => res.json())
+            .then((data) => {
+                console.log(data)
+                this.setState({
+                    employees: this.state.employees.filter(employee => employee.id !== item.id)
+                })
+            })
+            .catch((err) => console.log(err))
+    };
+
+
+
+    edit = (item) => {
+        fetch(url + 'update/' + item.id, {
+            method: 'PUT',
+            body: JSON.stringify({ 'id': item.id, 'name': item.employee_name, 'salary': item.employee_salary, 'age': item.employee_age })
+        }).then((res) => res.json())
+            .then((data) => {
+                console.log(data)
+            })
+            .catch((err) => console.log(err))
+        this.setState({
+            editEmployee: item
+
+        })
+    };
+
+    clearEditEmployee = () => (
+        this.setState({
+            editEmployee: {
+                id: '',
+                employee_name: '',
+                employee_salary: '',
+                employee_age: ''
+            }
+        })
+
+    )
+
+    handleSubmit = (form) => {
+        fetch(url + 'create', {
+            method: 'POST',
+            headers: new Headers(),
+            body: JSON.stringify({ 'id': form.id, 'name': form.employee_name, 'salary': form.employee_salary, 'age': form.employee_age })
+        }).then((res) => res.json())
+            .then((data) => {
+                const { name, salary, age } = data.data
+                if (form.id) {
+                    if (this.state.editEmployee.id) {
+                        let newTemp = this.state.employees;
+                        this.state.employees.map((employee, index) => {
+                            if (employee.id === this.state.editEmployee.id) {
+                                newTemp[index] = { id: employee.id, employee_name: name, employee_salary: Number(salary), employee_age: Number(age) }
+                                this.setState({
+                                    employees: newTemp,
+                                })
+                                this.clearEditEmployee()
+                            }
+                            return this.state.employees
+                        })
+                        return
+                    }
+                }
+                const randId = Math.floor(Math.random() * 10) + 25
+                this.setState({
+                    employees: [...this.state.employees, {
+                        id: randId,
+                        employee_name: name,
+                        employee_salary: Number(salary),
+                        employee_age: Number(age)
+                    }],
+                })
+                this.clearEditEmployee()
+            })
+            .catch((err) => console.log(err))
+    }
+
+
+    searchEmployee = (searchElement) => {
+        console.log(this.state.employees.filter(employee => employee.id === searchElement))
+
+
+        // if (searchElement !== '') {
+        //     this.setState({ searchElement: [] })
+        //     this.state.employees.map(employee => {
+        //         if (employee.employee_name.includes(searchElement)) {
+        //             let joined = this.state.searchArrray.concat(employee);
+
+        //             this.setState({ searchArrray: joined }, () => console.log(this.state.searchArrray))
+        //         }
+        //     })
+
+        // }
+
+    }
+
+    render() {
+        const { editEmployee, employees, isLoaded } = this.state
+        const { handleSubmit, edit, removeEmployee, searchEmployee } = this
+        if (!isLoaded) {
+            return <h1 > Loading </h1>
+        }
+        return (< >
+            <EmployeeForm
+                edit={editEmployee}
+                submit={handleSubmit} />
+            < SearchBar search={searchEmployee} />
+            < EmployeeList
+                data={employees}
+                edit={edit}
+                remove={removeEmployee} />
+        </>
+        )
+    }
+}
+
+export default Employee
