@@ -1,0 +1,67 @@
+ul {
+  padding: 10px 5px;
+  margin: 0;
+}
+
+li{
+  list-style: none;
+}
+
+.main{
+  width: 180px;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.04);
+  border: solid 1px #f6f6f6;
+  background-color: #ffffff;
+  
+  padding:0 5px
+}
+
+.main *{
+  font-family: Heebo;
+  font-size: 9px;
+}
+
+.heading {
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1.5;
+  color: #2c4059;
+}
+
+.listContainer {
+  margin-bottom: 10px;
+}
+
+.row{
+  flex-direction: row;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: nowrap
+}
+
+.name{
+  color: #5e5e5e;
+}
+
+.value{
+  font-weight: bold;
+  color: #25bae8;
+}
+
+.progressBar__outer{
+  width:100%;
+  height:2px;
+  background-color:#f5f5f5
+}
+
+.progressBar__inner{
+  background-color:#25bae8;
+  height:2px
+}
+
+
+
+
+
+

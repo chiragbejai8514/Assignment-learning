@@ -1,0 +1,28 @@
+{
+  "data": {
+    "Songs": [
+      {
+        "id": 1,
+        "name": "spartans",
+        "domain": "377596131774",
+        "subInfo": []
+      }
+    ],
+    "Movies": [
+      {
+        "id": 1,
+        "name": "spartans",
+        "domain": "377596131774",
+        "subInfo": []
+      }
+    ],
+    "Videos": [
+      {
+        "id": 1,
+        "name": "spartans",
+        "domain": "377596131774",
+        "subInfo": []
+      }
+    ]
+  }
+}

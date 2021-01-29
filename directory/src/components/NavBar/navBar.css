@@ -1,0 +1,88 @@
+a{
+    cursor: pointer;
+}
+
+
+body {
+    font-family: 'Lato';
+  }
+
+.App {
+    text-align: unset;
+}
+
+.column{
+    display: flex;
+    flex-direction: column;
+}
+
+.row{
+    display: flex;
+    flex-direction: row;
+}
+
+.nav-bar{
+    background-color:#F9FAFC ;
+    max-width: 256px;
+    justify-content: flex-start;
+    padding-top: 17px;
+}
+
+.nav-bar__container {
+    width: 100%;
+}
+
+.nav-bar__heading{
+    font-family: Lato-Bold;
+    font-size: 15px;
+    color: #AFB2B6;
+    letter-spacing: 0;
+    padding:15px 32px;
+}
+
+.nav-bar__item{
+    display: flex;
+    justify-content: space-between;
+    padding:15px 24px;  
+}
+
+.nav-bar__item:active {
+    background-color: #EEEFF1;
+}
+
+.nav-bar__item-name{
+    font-family: Lato-Regular;
+    font-size: 16px;
+    color: #2F363F;
+    letter-spacing: 0;
+    padding-left: 7px;
+}
+
+.dropdown{
+    width: 10px;
+    background-image: url(../../images/dropdown.png);
+    background-position-x: right;
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+
+
+@font-face {
+    font-family: 'Lato';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: local('Lato Regular'), local('Lato-Regular'), url(https://fonts.gstatic.com/s/lato/v16/S6uyw4BMUTPHjxAwXjeu.woff2) format('woff2');
+    unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
+  }
+  /* latin */
+  @font-face {
+    font-family: 'Lato';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: local('Lato Regular'), local('Lato-Regular'), url(https://fonts.gstatic.com/s/lato/v16/S6uyw4BMUTPHjx4wXg.woff2) format('woff2');
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+  }
+
+    
