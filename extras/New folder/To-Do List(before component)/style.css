@@ -1,0 +1,38 @@
+.to-do{
+    width: 300px;
+    height: 400px;
+    background: honeydew;
+}
+
+.to-do__first{
+    height: 40px;
+    background: red;
+}
+
+.to-do__first-sign{
+    display: inline-block;
+    float:right;
+}
+
+.to-do__first-title
+{
+    display: inline-block;
+    float:left;
+}
+.addToDo{
+    display: block;
+    background: pink;
+    width: 190px;
+    height: 100px;
+    position: fixed;
+    top: 0px;
+    left: 346px;
+}
+    
+
+.to-do__info{
+    height: 100px;
+    background: grey;
+    border: 1px solid green;
+    margin: 10px;
+}

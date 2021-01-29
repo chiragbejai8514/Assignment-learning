@@ -1,0 +1,90 @@
+:root {
+  --main-bg-color: coral;
+  --main-txt-color:white;
+  --main-padding: 15px;
+}
+.def{
+  margin-block-start: 0px;
+  margin-block-end: 0px;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
+}
+
+
+/* css */
+
+.dl-card{
+  border: 3px solid #03a9f4;
+  display: inline-block;
+}
+
+.dl-card *{
+  margin:0;
+  font-family: sans-serif;
+  background-size:contain;                      
+  background-repeat:no-repeat;
+  background-position: center ;   
+ }
+
+.dl-card__state{
+  text-align: center;
+  background-color: #ffe900;
+  font-size: 10px;
+  color: #FF5722;
+  padding: 5px 0;
+}
+
+.dl-card__content{
+  text-align: center;
+  padding: 25px;
+  font-size: x-small;
+  display: inline-block;
+}
+
+.dl-card__content-chip{
+  background-image: url(chip.jpg);
+}
+
+.dl-card__content-emblem{
+  margin: 23px 0;
+  background-image: url(emblem.jpg);
+}
+
+.dl-card__left-block,.dl-card__mid-block,.dl-card__right-block{
+  display: inline-block;
+}
+
+.dl-card__left-block div,.dl-card__right-block div{
+  height: 47px;
+  width: 47px;
+  padding: 10px;  
+}
+
+.dl-card__outline{
+  height: 135px;
+  width: 165px;
+  border: 3px solid #03a9f4;
+  display:inline-block; 
+  padding: 10px;
+}
+
+.dl-card__flag{
+  background-image: url(flag.png);
+}
+
+.dl-card__kar{
+  margin: 23px 0;
+  background-image: url(kar.png);
+}
+
+.dl-back{
+  width: 472px;
+  border: 3px solid #03a9f4;
+  display: inline-block;
+}
+
+.dl-p_info{
+  color: blue;
+  padding: 0;
+  font-weight: bold
+}

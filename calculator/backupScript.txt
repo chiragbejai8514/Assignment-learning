@@ -1,0 +1,124 @@
+class Calculator {
+
+    constructor() {
+        this.initOrReset();
+    }
+    processInput(btnValue){
+        const calculator = new Calculator();
+        if (calculator.isNumber(btnValue)) {
+            calculator.setTempValue(btnValue);
+        } else  if (calculator.isOperator(btnValue)) {
+            let tempValue =  calculator.getTempValue();
+            calculator.pushToStack(tempValue);
+            calculator.pushToStack(btnValue); 
+            calculator.clearTempValue(); 
+
+            if (btnValue === '=') {
+                document.getElementById('result').value=calculator.getCalculatedValue();
+            }
+        } 
+        else if (btnValue == 'clear') {
+                calculator.clearScreenValue();
+            }
+
+        if(calculator.isStackWithOneElement()){
+            document.getElementById('result').value =calculator.getTempValue();
+        }
+        else{
+            if(btnValue!=='='){
+            let screenValue = `${calculator.getStackString()} ${calculator.getTempValue()}`;
+            document.getElementById('result').value = screenValue;
+            }
+        }
+    }
+    setDisplayValue(displayValue){
+        this.displayValue=displayValue;
+        document.getElementById('result').value=displayValue;
+    }
+ equalsTo()
+ {
+                         let screenValue = `${calculator.getStackString()} ${calculator.getTempValue()}`;
+                    document.getElementById('result').value = screenValue;
+ }
+    initOrReset() {
+        this.tempValue = '';
+        this.stack = [];
+    }
+
+    setTempValue(tempValue) {
+        this.tempValue += tempValue;
+    }
+
+    getTempValue() {
+        return this.tempValue;
+    }
+
+    clearTempValue() {
+        this.tempValue = '';
+    }
+
+    pushToStack(stackItem) {
+        this.stack.push(stackItem);
+    }
+
+    getStackString() {
+        return this.stack.join(' ');
+    }
+    getCalculatedValue() {
+        let finalValue = 0;
+        let previousOperator = null;
+        this.stack.forEach((stackItem, index, self) => {
+
+            let value = parseInt(stackItem);
+
+            if (index === 0) {
+                finalValue = value;
+            }
+            else if (this.isOperator(stackItem)) {
+                previousOperator = stackItem
+            }
+            else if (this.isNumber(value)) {
+                switch (previousOperator) {
+                    case '+':
+
+                        finalValue += value;
+
+                        break;
+                    case '-':
+
+                        finalValue -= value;
+
+                        break;
+                    case '*':
+
+                        finalValue *= value;
+
+                        break;
+                    case '/':
+
+                        finalValue /= value;
+
+                        break;
+                    case '=':
+                        this.setScreenValue(finalValue);
+                    default:
+                        break;
+                }
+            }
+        });
+        return finalValue;
+    }
+
+    isStackWithOneElement() {
+        return this.stack.length === 0;
+    }
+
+    isNumber(value) {
+        return !isNaN(value);
+    }
+
+    isOperator(value) {
+        const operators = ['+', '-', '*', '/', '=']
+        return operators.includes(value);
+    }
+}

@@ -1,0 +1,23 @@
+class MyName extends HTMLElement {
+  connectedCallback() {
+    this.innerHTML = this.getAttribute('value');
+  }
+  
+   set nameValue(val) {
+   debugger;
+   this.setAttribute('nameValue', val);
+   }
+   
+   	get nameValue() {
+   return this.getAttribute('nameValue');
+   }
+}
+customElements.define('my-name', MyName);
+
+debugger;
+var myName = document.createElement("my-name");
+myName.nameValue="chirag";
+
+var element = document.getElementById("container");
+element.appendChild(myName);
+

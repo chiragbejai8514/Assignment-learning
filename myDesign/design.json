@@ -1,0 +1,16 @@
+{
+  "menu": [
+    {
+      "name": "DASHBoard"
+    },
+    {
+      "name": "User profile"
+    },
+    {
+      "name": "Table List"
+    },
+    {
+      "name": "Icons"
+    }
+  ]
+}

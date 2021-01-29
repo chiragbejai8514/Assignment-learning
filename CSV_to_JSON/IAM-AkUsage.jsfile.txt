@@ -1,0 +1,41 @@
+const _buildIamAccessKeyUsageData = (rawIamAccessKeyUsedData) => {
+
+    const keys = rawIamAccessKeyUsedData.keys;
+    const authSystemAccessKeys = rawIamAccessKeyUsedData.authSystemAccessKeys;
+    const totalPrivileges = rawIamAccessKeyUsedData.totalPrivileges
+
+
+
+    // const {
+    //     keys: [],
+    //     authSystemAccessKeys: [],
+    //     totalPrivileges } = rawIamAccessKeyAgeData;
+
+    let iamAccessKeyUsedData = {
+        id: 10,
+        name: "Hygiene: Unused IAM Access Keys",
+        why: "To reduce the chance of misuse, accidental or malicious, IAM keys that have not been used in the last 90 days should be deleted.",
+        what: "IAM keys that have not been used.",
+        keys: {
+            tableData: [],
+            tableConfig: ''
+        }
+    };
+
+
+    iamAccessKeyUsedData.keys.tableData = _.chain(keys).orderBy(['riskScore'], ['desc']).map(key => {
+
+        let data = {
+            key: key.key,
+            owner: key.userId,
+            status: key.status,
+            Privileges_used: key.tasksUsed,
+            Privileges_granted: key.tasksGranted,
+            Privileges_available: key.totalPrivileges
+        };
+        return data;
+    }).value();
+    console.log(iamAccessKeyUsedData)
+
+    return iamAccessKeyUsedData;
+};

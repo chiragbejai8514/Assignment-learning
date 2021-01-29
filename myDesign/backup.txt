@@ -1,0 +1,309 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: content-box;
+}
+
+
+
+.container-main{
+    background:#eeeeee;
+    width: 100%;
+    height: 100%;
+    display: inline-block;
+}
+
+.container-menu{
+    background-image: url(images/pic1.jpg);
+    width: 25%;
+    height: 100%;
+    display: inline-block;
+    float: left;
+}
+
+.container-menu__company-name{
+    padding: 11% 35%;
+    border: none;
+    border-bottom: 1px solid #ccc;
+}
+
+.container-menu__content{
+    height: 80%;
+}
+
+.container-menu__content__item{
+    height: 13%;
+    border-radius: 3px;
+    font-size: 14px;
+    font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+    padding-left: 25%;
+    font-size: 18px;
+    padding-top: 28px;
+    color: white;
+    margin-top: 8px;
+    box-sizing: border-box;
+    margin-left: 10px;
+    width: 314px;
+    transition: all 300ms;
+
+    
+}
+
+.container-menu__content__item:hover {
+    box-shadow: 0 12px 20px -10px rgba(0, 172, 193,.28), 0 4px 20px 0 rgba(0, 0, 0,.12), 0 7px 8px -5px rgba(0, 172, 193,.2);
+    background-color: #00acc5;
+  }
+  .container-menu__upgrade{
+    /* height: 8%; */
+    border-radius: 10%;
+    font-size: 14px;
+    font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+    padding-left: 25%;
+    font-size: 18px;
+    color: white;
+    /* margin-top: 0px; */
+    padding-left: 70px;
+    padding-top: 25px;
+    padding-bottom: 25px;
+
+}
+
+.container-menu__upgrade:hover{
+    background-color: cyan;
+}
+
+.underline{
+    border: none;
+    border-bottom: 1px solid #9d9870;
+    width: 90%;
+    background: #262120;
+    margin-left: 4%;
+    margin-top: 1%;
+}
+.container-content{
+    background: #eeeeee;
+    display: inline-block;
+    height: 100%;
+    width: 75%;
+    overflow: auto;
+}
+
+.container-content__first{
+    padding: 3% 0% 0px 1%;
+    display: block;
+
+
+}
+.container-content__first-big-box{
+    background-color: white;
+    width: 143px;
+    display: inline-block;
+    padding: 2% 2% 2% 4%;
+    margin: 0px 16px 0px;
+    border-radius: 7%;
+    border-bottom-style: groove;
+    height: 23%;
+}
+
+.container-content__first-small-box{  
+    position: relative;
+    top: -230px;
+    height: 62%;
+    width: 74%;
+    left: -29px;
+    border-radius: 4px;
+}
+.container-content__second-box{
+    background-color: white;
+    width: 28%;
+    display: inline-block;
+    /* padding: 2% 2% 2% 7%; */
+    margin: 0px 23px 0px;
+    border-radius: 7%;
+    border-bottom-style: groove;
+    height: 50%;
+}
+
+.container-content__second{
+    margin:7% 0% 0px 1%;
+
+}
+.container-content__second-small-box{  
+    /* position: relative; */
+    /* top: -64px; */
+    height: 60%;
+    width: 87%;
+    /* left: -58px; */
+    border-radius: 6px;
+    margin-top: -20px;
+    /* padding: 4px 1px 2px 1px; */
+    margin-left: 18px;
+}
+
+
+
+.first-text{
+    padding-left: 88px;
+    height: 58px;
+    word-wrap: break-word;
+    color: #eeeeee;
+    font-size: 20px;
+    font-family: Roboto,Helvetica,Arial,sans-serif;
+}
+
+
+
+
+.second-text{
+    padding-left: 88px;
+    font-size: 30px;
+    height: 107px;
+    word-wrap: break-word;
+}
+
+
+.underline{
+    /* border: none;
+    border-bottom: 1px solid #eeeeee;
+    width: 132%;
+    background: #262120;
+    position: relative;
+    top: -5px;
+    left: -38px; */
+
+    border: none;
+    border-bottom: 1px solid #eeeeee;
+    width: 100%;
+    margin-top: -5px;
+
+}
+
+.third-text{
+    color:#ccc;
+}
+
+
+
+.second-second_big-box{
+height: 338px;
+}
+
+
+.container-first-text{
+    padding-left: 18px;
+    font-family: 'Roboto', 'Helvetica', 'Arial', sans-serif;
+    height: 46px;
+    font-size: 33px;
+}   
+.container-second-text{
+    padding-left: 18px;
+    font-family: 'Roboto', 'Helvetica', 'Arial', sans-serif;
+    height: 46px;
+    font-size: 19px;
+}   ////////////////
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<html>
+
+<head>
+    <title>My Design</title>
+    <link rel="stylesheet" type="text/css" href="styles.css">
+</head>
+
+<body>
+    <div class="container-main">
+        <div class="container-menu">
+            <div class="container-menu__company-name">
+                Chirag
+            </div>
+
+            <div class="container-menu__content">
+                <div class="container-menu__content__item">DaashBoard</div>
+                <div class="container-menu__content__item">User profile</div>
+                <div class="container-menu__content__item">Table list</div>
+                <div class="container-menu__content__item">Icons</div>
+
+
+            </div>
+            <div class="container-menu__upgrade">
+                Upgrade Now
+            </div>
+
+        </div>
+        <div class="container-content">
+            <div class="container-content__first">
+                <div class="container-content__first-big-box">
+                    <div class="first-text">Used space</div>
+                    <div class="second-text">49/50GB</div>
+                    <div class="underline"></div>
+                    <class class="third-text" style="color:#9c27b0">Get more space</class>
+
+                    <div class="container-content__first-small-box" style="background: #fc930a"></div>
+                </div>
+                <div class="container-content__first-big-box">
+                    <div class="first-text">Revenue</div>
+                    <div class="second-text">$34,245</div>
+                    <div class="underline"></div>
+                    <class class="third-text">Last 24 Hours</class>
+                    <div class="container-content__first-small-box" style="background: #57af5b"></div>
+                </div>
+                <div class="container-content__first-big-box">
+                    <div class="first-text">Fixed Issue</div>
+                    <div class="second-text">75</div>
+                    <div class="underline"></div>
+                    <class class="third-text">Tracked from Github</class>
+                    <div class="container-content__first-small-box" style="background: #e8413d"></div>
+                </div>
+                <div class="container-content__first-big-box">
+                    <div class="first-text">Followers</div>
+                    <div class="second-text">+245</div>
+                    <div class="underline"></div>
+                    <div class="third-text">Just Updated</div>
+                    <div class="container-content__first-small-box" style="background: #12b8cd"></div>
+                </div>
+            </div>
+            <div class="container-content__second">
+                <div class="container-content__second-box">
+
+                    <div class="container-content__second-small-box" style="background: #fc930a"></div>
+                    <div class="container-first-text">daily sales</div>
+                    <div class="container-second-text"> 55% increase in today sales.</div>
+                    <div class="underline"></div>
+                    <div class="third-text">Just Updated</div>
+
+                </div>
+                <div class="container-content__second-box">
+                    <div class="container-content__second-small-box " style="background: #57af5b"></div>
+                    <div class="container-first-text">Email Subscription</div>
+                    <div class="container-second-text"> Last Campaign Performance</div>
+                    <div class="underline"></div>
+                    <div class="third-text">Just Updated</div>
+                </div>
+                <div class="container-content__second-box">
+                    <div class="container-content__second-small-box" style="background: #e8413d"></div>
+                    <div class="container-first-text">Completed task</div>
+                    <div class="container-second-text"> campaign sent 2 days ago</div>
+                    <div class="underline"></div>
+                    <div class="third-text">Just Updated</div>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+
+</body>
+
+</html>
